@@ -22,6 +22,8 @@ export default defineNuxtConfig({
     },
   },
 
+  css: ['~/assets/app.css'],
+
   compatibilityDate: '2024-11-01',
 
   vite: {
