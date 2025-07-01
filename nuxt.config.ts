@@ -4,6 +4,8 @@ export default defineNuxtConfig({
 
   ssr: false,
 
+  pages: true,
+
   devtools: { enabled: true },
 
   // https://nuxt.com/docs/getting-started/seo-meta
