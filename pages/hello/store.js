@@ -1,7 +1,11 @@
-const name = 'hello'
+import Duty from './duty'
 
-export const usePageStore = defineStore(name, {
+const id = 'hello'
+const duty = new Duty(id)
+
+export const usePageStore = defineStore(id, {
   state: () => ({
+    duty: duty.setup(useNuxtApp()),
     count: 0,
     name: 'Eduardo',
   }),
@@ -12,7 +16,7 @@ export const usePageStore = defineStore(name, {
   },
   actions: {
     async init() {
-      await null
+      await duty.init()
     },
     increment() {
       this.count++
