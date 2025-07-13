@@ -37,9 +37,9 @@ const onLogin = async () => {
     username: form.username.trim(),
     password: form.password,
   }).then(async () => {
-    // redirectクエリパラメータがある場合はそのページに、なければ/secureページに遷移
+    // redirectクエリパラメータがある場合はそのページに、なければ/secure/helloページに遷移
     const route = useRoute()
-    const redirectPath = route.query.redirect || '/secure'
+    const redirectPath = route.query.redirect || '/secure/hello'
     await navigateTo(redirectPath)
   }).catch((error) => {
     errorMessage.value = error.message || 'ログインに失敗しました'
