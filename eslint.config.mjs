@@ -7,7 +7,9 @@ import withNuxt from './.nuxt/eslint.config.mjs'
 export default withNuxt(
   {
     languageOptions: {
-      globals: globals.node,
+      globals: {
+        ...globals.browser,
+      },
       parserOptions: {
         ecmaVersion: 'latest',
       },
@@ -35,6 +37,16 @@ export default withNuxt(
     plugins: {
       '@stylistic': stylistic,
     },
-    rules: {},
+    rules: {
+      'no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }],
+    },
+  },
+
+  // Vue 3 specific rules
+  {
+    rules: {
+      'vue/max-attributes-per-line': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
+    },
   },
 )

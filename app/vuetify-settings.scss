@@ -1,0 +1,5 @@
+$body-font-family: "Roboto", "BIZ UDPGothic", sans-serif;
+
+@use "vuetify/settings" with (
+  $body-font-family: $body-font-family
+);
