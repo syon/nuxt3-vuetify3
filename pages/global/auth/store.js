@@ -19,17 +19,20 @@ export const useStore = defineStore(id, {
   },
 
   actions: {
+    async init() {
+      return await duty.init()
+        .then(this.$patch)
+        .catch(() => {
+          throw new Error('認証ストアの初期化に失敗しました')
+        })
+    },
+
     async login(credentials) {
-      this.errorMessage = null
       return await duty.login(credentials)
         .then(this.$patch)
         .catch(() => {
           throw new Error('ログイン処理中にエラーが発生しました')
         })
-    },
-
-    clearError() {
-      this.errorMessage = null
     },
 
     async logout() {

@@ -37,6 +37,8 @@ export default withNuxt(
     plugins: {
       '@stylistic': stylistic,
     },
-    rules: {},
+    rules: {
+      'no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }],
+    },
   },
 )

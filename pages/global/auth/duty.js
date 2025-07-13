@@ -10,6 +10,15 @@ export default class Duty {
     return Object.assign(this, { $api })
   }
 
+  async init() {
+    const { accessToken, refreshToken, user } = this.loadTokensFromStorage()
+    return {
+      accessToken,
+      refreshToken,
+      user,
+    }
+  }
+
   async login(credentials) {
     const response = await this.$api(DummyJSON.AuthLogin, {
       body: {

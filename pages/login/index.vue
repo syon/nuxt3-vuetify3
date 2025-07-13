@@ -37,7 +37,10 @@ const onLogin = async () => {
     username: form.username.trim(),
     password: form.password,
   }).then(async () => {
-    await navigateTo('/secure')
+    // redirectクエリパラメータがある場合はそのページに、なければ/secureページに遷移
+    const route = useRoute()
+    const redirectPath = route.query.redirect || '/secure'
+    await navigateTo(redirectPath)
   }).catch((error) => {
     errorMessage.value = error.message || 'ログインに失敗しました'
   })
@@ -50,6 +53,17 @@ const togglePassword = () => {
 onMounted(async () => {
   console.log('Login page mounted.')
   await $pg.init()
+
+  // 既にログイン済みの場合はリダイレクト
+  const { useStore: useAuthStore } = await import('~/pages/global/auth/store')
+  const authStore = useAuthStore()
+  await authStore.init()
+  
+  if (authStore.isLoggedIn) {
+    const route = useRoute()
+    const redirectPath = route.query.redirect || '/secure'
+    await navigateTo(redirectPath)
+  }
 })
 </script>
 
@@ -144,6 +158,13 @@ onMounted(async () => {
         <p><strong>ユーザー名:</strong> emilys</p>
         <p><strong>パスワード:</strong> emilyspass</p>
         <small>※ DummyJSONのテストアカウントです</small>
+      </div>
+
+      <div 
+        v-if="$route.query.redirect"
+        class="redirect-info"
+      >
+        <small>ログイン後、「{{ $route.query.redirect }}」ページに戻ります</small>
       </div>
     </div>
   </div>
@@ -286,5 +307,19 @@ onMounted(async () => {
 .demo-info small {
   color: #868e96;
   font-style: italic;
+}
+
+.redirect-info {
+  background: #e7f3ff;
+  border: 1px solid #b3d9ff;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.redirect-info small {
+  color: #0066cc;
+  font-weight: 500;
 }
 </style>
