@@ -41,4 +41,11 @@ export default withNuxt(
       'no-unused-vars': ['error', { args: 'none', caughtErrors: 'none' }],
     },
   },
+
+  // Vue 3 specific rules
+  {
+    rules: {
+      'vue/max-attributes-per-line': 'off',
+    },
+  },
 )

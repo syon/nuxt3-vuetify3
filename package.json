@@ -8,6 +8,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@nuxt/eslint": "^1.2.0",
     "@pinia/nuxt": "^0.10.1",
     "@vee-validate/i18n": "^4.15.0",
@@ -16,13 +17,16 @@
     "debug": "^4.4.0",
     "nuxt": "^3.16.1",
     "pinia": "^3.0.1",
+    "sass": "^1.89.2",
     "vee-validate": "^4.15.0",
     "vue": "^3.5.13",
-    "vue-router": "^4.5.0"
+    "vue-router": "^4.5.0",
+    "vuetify": "^3.9.0"
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "globals": "^16.0.0"
+    "globals": "^16.0.0",
+    "vite-plugin-vuetify": "^2.1.1"
   }
 }

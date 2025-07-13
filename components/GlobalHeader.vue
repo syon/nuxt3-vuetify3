@@ -25,23 +25,14 @@ onMounted(() => {
         セキュアエリア
       </h1>
 
-      <div
-        v-if="authStore.isLoggedIn"
-        style="display: flex; align-items: center; gap: 16px;"
-      >
+      <div v-if="authStore.isLoggedIn" style="display: flex; align-items: center; gap: 16px;">
         <span style="font-size: 14px;">{{ authStore.userName }}</span>
-        <button
-          style="padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;"
-          @click="handleLogout"
-        >
+        <button style="padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;" @click="handleLogout">
           ログアウト
         </button>
       </div>
 
-      <div
-        v-else
-        style="font-size: 14px; color: #666;"
-      >
+      <div v-else style="font-size: 14px; color: #666;">
         ログインしていません
       </div>
     </div>
