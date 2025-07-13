@@ -1,75 +1,44 @@
-# Nuxt Minimal Starter
+# nuxt3-vuetify3
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Sample project of Nuxt 3 & Vuetify 3.
 
 ## Setup
 
-Make sure to install dependencies:
-
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
+npm ci
 ```
 
-## Development Server
+## Features
 
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- Base
+  - ✅ Nuxt3
+  - ✅ ESLint (Stylistic, import)
+  - ✅ vscode extensions
+- Nuxt3 config
+  - ✅ SPA
+  - ✅ API Proxy
+  - ✅ Loading
+  - ✅ subdir
+  - ✅ head, meta
+  - ✅ custom CSS
+  - ✅ pinia
+  - ✅ pages
+- Plugins
+  - ✅ debug
+  - ✅ dayjs
+  - ✅ VeeValidate
+  - ✅ hooks (scrollTo)
+  - ✅ API
+  - ✅ global/auth
+    - https://dummyjson.com/docs/auth
+- Sample pages
+  - ✅ Login page
+  - ✅ Secure page (profile + hello)
+    - Protected by middleware with [nested-routes](https://nuxt.com/docs/guide/directory-structure/pages#nested-routes)
+  - ✅ Structure: store & duty pattern
+- Middleware
+  - ✅ auth-guard
+- Vuetify3
+  - ✅ Customize theme color
+  - ✅ Roboto font (html head)
+  - ✅ SASS variables (font-family)
