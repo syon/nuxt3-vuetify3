@@ -3,39 +3,13 @@ import { useStore } from './store.js'
 
 const $pg = useStore()
 
-const form = reactive({
-  username: '',
-  password: '',
-})
-
-const formErrors = reactive({
-  username: '',
-  password: '',
-})
-
 const showPassword = ref(false)
 const errorMessage = ref(null)
 
-const validateForm = () => {
-  formErrors.username = ''
-  formErrors.password = ''
-  if (!form.username.trim()) {
-    formErrors.username = 'ユーザー名を入力してください'
-  }
-  if (!form.password.trim()) {
-    formErrors.password = 'パスワードを入力してください'
-  }
-  return !formErrors.username && !formErrors.password
-}
-
-const onLogin = async () => {
-  if (!validateForm()) {
-    return
-  }
-
+const onSubmit = async (values) => {
   await $pg.login({
-    username: form.username.trim(),
-    password: form.password,
+    username: values.username.trim(),
+    password: values.password,
   }).then(async () => {
     // redirectクエリパラメータがある場合はそのページに、なければ/secure/helloページに遷移
     const route = useRoute()
@@ -74,9 +48,9 @@ onMounted(async () => {
         ログイン
       </h1>
 
-      <form
+      <ValidationForm
         class="login-form"
-        @submit.prevent="onLogin"
+        @submit="onSubmit"
       >
         <div class="form-group">
           <label
@@ -85,21 +59,26 @@ onMounted(async () => {
           >
             ユーザー名
           </label>
-          <input
-            id="username"
-            v-model="form.username"
-            type="text"
-            class="form-input"
-            :class="{ error: formErrors.username }"
-            placeholder="ユーザー名を入力"
-            autocomplete="username"
+          <ValidationField
+            name="username"
+            rules="required"
           >
-          <div
-            v-if="formErrors.username"
+            <template #default="{ field, meta }">
+              <input
+                id="username"
+                v-bind="field"
+                type="text"
+                class="form-input"
+                :class="{ error: !meta.valid && meta.dirty }"
+                placeholder="ユーザー名を入力"
+                autocomplete="username"
+              >
+            </template>
+          </ValidationField>
+          <ValidationErrorMessage
+            name="username"
             class="error-message"
-          >
-            {{ formErrors.username }}
-          </div>
+          />
         </div>
 
         <div class="form-group">
@@ -110,15 +89,22 @@ onMounted(async () => {
             パスワード
           </label>
           <div class="password-wrapper">
-            <input
-              id="password"
-              v-model="form.password"
-              :type="showPassword ? 'text' : 'password'"
-              class="form-input"
-              :class="{ error: formErrors.password }"
-              placeholder="パスワードを入力"
-              autocomplete="current-password"
+            <ValidationField
+              name="password"
+              rules="required"
             >
+              <template #default="{ field, meta }">
+                <input
+                  id="password"
+                  v-bind="field"
+                  :type="showPassword ? 'text' : 'password'"
+                  class="form-input"
+                  :class="{ error: !meta.valid && meta.dirty }"
+                  placeholder="パスワードを入力"
+                  autocomplete="current-password"
+                >
+              </template>
+            </ValidationField>
             <button
               type="button"
               class="password-toggle"
@@ -128,12 +114,10 @@ onMounted(async () => {
               {{ showPassword ? '🙈' : '👁️' }}
             </button>
           </div>
-          <div
-            v-if="formErrors.password"
+          <ValidationErrorMessage
+            name="password"
             class="error-message"
-          >
-            {{ formErrors.password }}
-          </div>
+          />
         </div>
 
         <div
@@ -151,7 +135,7 @@ onMounted(async () => {
           <span v-if="$pg.loading">ログイン中...</span>
           <span v-else>ログイン</span>
         </button>
-      </form>
+      </ValidationForm>
 
       <div class="demo-info">
         <h3>デモ用ログイン情報</h3>
