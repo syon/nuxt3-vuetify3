@@ -1,6 +1,6 @@
 import Duty from './duty'
 
-const id = 'hello'
+const id = 'secure'
 const duty = new Duty(id)
 
 export const usePageStore = defineStore(id, {
