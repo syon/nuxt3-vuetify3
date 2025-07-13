@@ -58,7 +58,7 @@ onMounted(async () => {
   const { useStore: useAuthStore } = await import('~/pages/global/auth/store')
   const authStore = useAuthStore()
   await authStore.init()
-  
+
   if (authStore.isLoggedIn) {
     const route = useRoute()
     const redirectPath = route.query.redirect || '/secure'
@@ -160,7 +160,7 @@ onMounted(async () => {
         <small>※ DummyJSONのテストアカウントです</small>
       </div>
 
-      <div 
+      <div
         v-if="$route.query.redirect"
         class="redirect-info"
       >

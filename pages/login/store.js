@@ -1,5 +1,6 @@
 import { useStore as useAuthStore } from '~/pages/global/auth/store'
 
+// eslint-disable-next-line import/order
 import Duty from './duty'
 
 const id = 'login'
