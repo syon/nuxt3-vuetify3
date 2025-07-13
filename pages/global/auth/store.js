@@ -9,6 +9,7 @@ export const useStore = defineStore(id, {
     accessToken: null,
     refreshToken: null,
     user: null,
+    profile: null,
   }),
 
   getters: {

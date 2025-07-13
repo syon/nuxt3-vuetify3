@@ -13,7 +13,7 @@ const onSubmit = async (values) => {
   }).then(async () => {
     // redirectクエリパラメータがある場合はそのページに、なければ/secure/helloページに遷移
     const route = useRoute()
-    const redirectPath = route.query.redirect || '/secure/hello'
+    const redirectPath = route.query.redirect || '/secure/profile'
     await navigateTo(redirectPath)
   }).catch((error) => {
     errorMessage.value = error.message || 'ログインに失敗しました'
@@ -35,7 +35,7 @@ onMounted(async () => {
 
   if (authStore.isLoggedIn) {
     const route = useRoute()
-    const redirectPath = route.query.redirect || '/secure'
+    const redirectPath = route.query.redirect || '/secure/profile'
     await navigateTo(redirectPath)
   }
 })

@@ -4,7 +4,6 @@ import { usePageStore } from './store.js'
 const $pg = usePageStore()
 
 onMounted(async () => {
-  console.log('Hello from onMounted.')
   await $pg.init()
 })
 </script>
@@ -13,7 +12,7 @@ onMounted(async () => {
   <v-container>
     <v-row justify="center">
       <v-col cols="12" md="8" lg="6">
-        <v-card elevation="4" rounded="lg">
+        <v-card rounded="lg">
           <v-card-title class="text-h4 text-center pa-6">
             Hello Page
           </v-card-title>
@@ -60,6 +59,10 @@ onMounted(async () => {
             </v-row>
           </v-card-text>
         </v-card>
+
+        <div class="text-center mt-4">
+          <v-btn to="/secure/profile">Profile</v-btn>
+        </div>
       </v-col>
     </v-row>
   </v-container>

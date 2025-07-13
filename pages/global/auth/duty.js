@@ -111,7 +111,7 @@ export default class Duty {
     })
 
     return {
-      user: response,
+      profile: response,
     }
   }
 }
