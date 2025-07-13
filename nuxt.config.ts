@@ -7,7 +7,12 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        config?.plugins?.push(vuetify({ autoImport: true }))
+        config?.plugins?.push(vuetify({
+          autoImport: true,
+          styles: {
+            configFile: 'app/vuetify-settings.scss',
+          },
+        }))
       })
     },
   ],
@@ -27,6 +32,9 @@ export default defineNuxtConfig({
       meta: [
         { name: 'description', content: 'My amazing site.' },
         { name: 'format-detection', content: 'telephone=no' },
+      ],
+      link: [
+        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap' },
       ],
       htmlAttrs: {
         lang: 'ja',
